@@ -5,21 +5,24 @@ var left =30;
 var right=30;
 var row,column;
 var missingTxt=0;
+var input,showResp;
 function preload(){
     table = loadTable("data/LeaveonReadData.csv","csv","header");
 
 }
 function setup(){
     createCanvas(window.innerWidth,window.innerHeight);
-    //    console.log(table.getColumn("You1"));
-    //    text(table.getColumn("You1"),50,50,windowWidth, windowHeight);
-    //getString(row,column);
-    //    print(table.getString(0, 0));
     row=0;
     column=0; 
     textSize(30);
-    console.log(table.getString(3,column));
-
+    input = createInput();
+    input.position(0,window.innerHeight-70);
+    input.size(windowWidth-100,35);
+    button = createButton("send");
+    button.size(500);
+    button.position(input.x+input.width,window.innerHeight-70);
+    button.mousePressed(send);
+    showResp=false;
 }
 
 function draw(){
@@ -33,10 +36,10 @@ function draw(){
         if(table.getString(row,column+i)== ""){
             console.log(i+" xx ");
         }else{
-             text(table.getString(row,column+i),left,firstTxt +space*i,windowWidth, windowHeight);
+            text(table.getString(row,column+i),left,firstTxt +space*i,windowWidth, windowHeight);
         }
     }
-    for(var i=1; i<=5; i+=2){
+    for(var i=1; i<=4; i+=2){
         noStroke();
         //    textAlign(RIGHT);
         if(table.getString(row,column+i)== ""){
@@ -45,16 +48,30 @@ function draw(){
             text(table.getString(row,column+i),left,firstTxt +space*i,windowWidth, windowHeight);
         }
     }
- 
+    if(showResp){
+        var i=5;
+        text(table.getString(row,column+i),left,firstTxt +space*i,windowWidth, windowHeight);
+    }
+
+}
+
+function send(){
+    if(!showResp){
+    showResp=true;
+    }else{
+    showResp=false;
+    }
 }
 
 function touchStarted(){
+    if(!showResp){
     if(row>=table.getRowCount()-1){
         row=0;  
     }else{
         row++;
     }
     console.log(row);
+    }
 }
 
 // //You
