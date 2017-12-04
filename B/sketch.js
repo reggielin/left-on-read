@@ -19,7 +19,7 @@ function setup(){
     input.position(0,window.innerHeight-70);
     input.size(windowWidth-100,35);
     button = createButton("send");
-    button.size(500);
+    button.size(35);
     button.position(input.x+input.width,window.innerHeight-70);
     button.mousePressed(send);
     showResp=false;
