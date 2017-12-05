@@ -1,77 +1,96 @@
 var table;
-var space=100;
-var firstTxt =200;
+var space=200;
+var firstTxt =100;
 var left =30;
-var right=30;
+var right=300;
 var row,column;
 var missingTxt=0;
 var input,showResp;
+var afterLine;
 function preload(){
     table = loadTable("data/LeaveonReadData.csv","csv","header");
 
 }
 function setup(){
-    createCanvas(window.innerWidth,window.innerHeight);
+    createCanvas(innerWidth,innerHeight);
     row=0;
     column=0; 
     textSize(30);
     input = createInput();
-    input.position(0,window.innerHeight-70);
-    input.size(windowWidth-100,35);
+    input.position(0,1400);
+    input.size(windowWidth-200,35);
     button = createButton("send");
-    button.size(35);
-    button.position(input.x+input.width,window.innerHeight-70);
+    button.size(30);
+    button.position(input.x+input.width,input.y);
     button.mousePressed(send);
     showResp=false;
 }
 
 function draw(){
-    background(255);
-    strokeWeight(5);
-    stroke("BLUE");
-    rect(0,0,window.innerWidth,window.innerHeight);
+    background(250);
+//    noFill();
+//    strokeWeight(15);
+//    stroke("BLUE");
+//    rect(0,0,innerWidth,innerHeight);
     for(var i=0; i<=5; i+=2){
+        var line;
         noStroke();
-        //    textAlign(LEFT);
-        if(table.getString(row,column+i)== ""){
-            console.log(i+" xx ");
+          textAlign(LEFT);
+        if(i!=0){
+            if(table.getString(row,column+(i-1))== ""){
+                line = firstTxt+(space)*(i/2);
+                console.log(i+" "+ line);
+
+            }else{
+                line=firstTxt +space*i; 
+            }
         }else{
-            text(table.getString(row,column+i),left,firstTxt +space*i,windowWidth, windowHeight);
+            console.log(i+" "+ line);
+            line=firstTxt +space*i;  
         }
+        fill(0);
+        text(table.getString(row,column+i),left,line,windowWidth/2, windowHeight);  
+        afterLine=line+space;
     }
     for(var i=1; i<=4; i+=2){
+        var line;
         noStroke();
-        //    textAlign(RIGHT);
-        if(table.getString(row,column+i)== ""){
-            console.log(i+" xx "); 
+            textAlign(RIGHT);
+        if(table.getString(row,column+(i-1))== ""){
+            line = firstTxt+(space)*(i/2);
+            console.log(i+" "+ line);
         } else{
-            text(table.getString(row,column+i),left,firstTxt +space*i,windowWidth, windowHeight);
+            line=firstTxt +space*i;
         }
+        fill(0);
+        text(table.getString(row,column+i),right,line,windowWidth/2, windowHeight);
     }
-    if(showResp){
-        var i=5;
-        text(table.getString(row,column+i),left,firstTxt +space*i,windowWidth, windowHeight);
-    }
+     if(showResp){
+            var i=5;
+            fill(150);
+            text(table.getString(row,column+i),right,afterLine,windowWidth/2, windowHeight);
+        }
 
 }
 
 function send(){
     if(!showResp){
-    showResp=true;
+        showResp=true;
     }else{
-    showResp=false;
+        showResp=false;
     }
 }
 
 function touchStarted(){
     if(!showResp){
-    if(row>=table.getRowCount()-1){
-        row=0;  
-    }else{
-        row++;
+        if(row>=table.getRowCount()-1){
+            row=0;  
+        }else{
+            row++;
+        }
+        console.log(row);
     }
-    console.log(row);
-    }
+    return false;
 }
 
 // //You
