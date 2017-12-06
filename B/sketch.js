@@ -12,15 +12,17 @@ function preload(){
 
 }
 function setup(){
-    createCanvas(innerWidth,innerHeight);
+    var cnv = createCanvas(innerWidth,innerHeight);
+    cnv.mousePressed(switchConvo);
     row=0;
     column=0; 
     textSize(30);
     input = createInput();
+    input.style('z-index', '3')
     input.position(0,1400);
-    input.size(windowWidth-200,35);
+    input.size(windowWidth-200,55);
     button = createButton("send");
-    button.size(30);
+    button.size(30, 50);
     button.position(input.x+input.width,input.y);
     button.mousePressed(send);
     showResp=false;
@@ -42,11 +44,11 @@ function draw(){
                 console.log(i+" "+ line);
 
             }else{
-                line=firstTxt +space*i; 
+                line=firstTxt +space*i/2; 
             }
         }else{
             console.log(i+" "+ line);
-            line=firstTxt +space*i;  
+            line=firstTxt +space*i/2;  
         }
         fill(0);
         text(table.getString(row,column+i),left,line,windowWidth/2, windowHeight);  
@@ -81,7 +83,7 @@ function send(){
     }
 }
 
-function touchStarted(){
+function switchConvo(){
     if(!showResp){
         if(row>=table.getRowCount()-1){
             row=0;  
@@ -90,7 +92,7 @@ function touchStarted(){
         }
         console.log(row);
     }
-    return false;
+    //return false;
 }
 
 // //You
