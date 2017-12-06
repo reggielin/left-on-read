@@ -64,7 +64,7 @@ function draw(){
                     //                    console.log(i+" "+table.getString(row,column+i)+" "+line);
                 }
             }
-//            text(table.getString(row,column+i),left,line,windowWidth-100, windowHeight);
+            text(table.getString(row,column+i),left,line,windowWidth-100, windowHeight);
         } else {
             fill(0);
             textAlign(RIGHT);
