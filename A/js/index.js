@@ -1,3 +1,9 @@
+var leftonread;
+
+$.getJSON("https://sheetsu.com/apis/v1.0su/2e93602a2b09", function(data) {
+  leftonread = data;
+});
+
 function scrollDown() {
   var focusBottom = document.getElementById("first");
   focusBottom.scrollTop = focusBottom.scrollHeight;
