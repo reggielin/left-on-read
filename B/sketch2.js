@@ -2,7 +2,7 @@ var table;
 var space=200;
 var firstTxt =100;
 var left =30;
-var right;
+var right=200;
 var row,column;
 var missingTxt=0;
 var input,showResp;
@@ -30,7 +30,6 @@ function setup(){
     showResp=false;
     noStroke();
     print(round(table.getColumnCount()/2)-1);
-    right=windowWidth;
     
 }
 
@@ -65,7 +64,7 @@ function draw(){
                     //                    console.log(i+" "+table.getString(row,column+i)+" "+line);
                 }
             }
-            text(table.getString(row,column+i),left,line,windowWidth-100, windowHeight);
+//            text(table.getString(row,column+i),left,line,windowWidth-100, windowHeight);
         } else {
             fill(0);
             textAlign(RIGHT);
@@ -83,7 +82,7 @@ function draw(){
 //            fill('red');
 //            rect(windowWidth/2-200,line,windowWidth-100,windowHeight);
             fill(0)
-            text(table.getString(row,column+i),windowWidth/2-200,line,windowWidth-100,windowHeight);
+            text(table.getString(row,column+i),right,line,windowWidth-200,windowHeight);
         }
     }
     if(showResp){
