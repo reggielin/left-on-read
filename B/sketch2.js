@@ -2,7 +2,7 @@ var table;
 var space=200;
 var firstTxt =100;
 var left =30;
-var right=460;
+var right;
 var row,column;
 var missingTxt=0;
 var input,showResp;
@@ -14,7 +14,7 @@ function preload(){
 }
 function setup(){
     var cnv = createCanvas(innerWidth,innerHeight);
-    cnv.mousePressed(switchConvo);
+    cnv.mouseClicked(switchConvo);
     row=5;
     column=0; 
     textSize(30);
@@ -30,6 +30,8 @@ function setup(){
     showResp=false;
     noStroke();
     print(round(table.getColumnCount()/2)-1);
+    right=windowWidth;
+    
 }
 
 function draw(){
@@ -44,16 +46,23 @@ function draw(){
             fill(0);
             textAlign(LEFT);
             if(table.getString(row,column)== ""){ //check column=0 if the first one is empty;
-                line=(firstTxt+space*i)-firstTxt*2.5; 
                 console.log(i+ " this row has no 0");
+                if(table.getString(row,column+i).length>=50 ){
+                    console.log(i+ " long txt");
+                    line=firstTxt+(space*i)/2;  
+                }else{
+                    console.log(i+" short txt");
+                    line=firstTxt+(space*i)/2;  
+                    //                    console.log(i+" "+table.getString(row,column+i)+" "+line);
+                }
             }else{
                 if(table.getString(row,column+i).length>=50 ){
                     console.log(i+ " long txt");
-                     line=firstTxt+(space*i)/2;  
+                    line=firstTxt+(space*i)/2;  
                 }else{
-                     console.log(i+" short txt");
-                     line=firstTxt+(space*i)/2;  
-//                    console.log(i+" "+table.getString(row,column+i)+" "+line);
+                    console.log(i+" short txt");
+                    line=firstTxt+(space*i)/2;  
+                    //                    console.log(i+" "+table.getString(row,column+i)+" "+line);
                 }
             }
             text(table.getString(row,column+i),left,line,windowWidth-100, windowHeight);
@@ -62,12 +71,19 @@ function draw(){
             textAlign(RIGHT);
             if(table.getString(row,column)== ""){
                 // if(table.getString(row,column+i).length>=30 ){
-                line=(firstTxt+space*(i-1));  
+                if(i==1){  
+                    line=(firstTxt+space*(i-1));
+                }else{
+                     line=(firstTxt+space*(i-1))-firstTxt;
+                }
             }else{
                 line=firstTxt+(space*i)/2;
-//                console.log(i+" "+table.getString(row,column+i)+" "+line);
+                //                console.log(i+" "+table.getString(row,column+i)+" "+line);
             }
-            text(table.getString(row,column+i),right,line,windowWidth/2, windowHeight);
+//            fill('red');
+//            rect(windowWidth/2-200,line,windowWidth-100,windowHeight);
+            fill(0)
+            text(table.getString(row,column+i),windowWidth/2-200,line,windowWidth-100,windowHeight);
         }
     }
     if(showResp){
