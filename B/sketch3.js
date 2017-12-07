@@ -10,6 +10,8 @@ var input,showResp;
 var afterLine;
 var line;
 var yline =[];
+var txtWidth;
+var char;
 function preload(){
     table = loadTable("data/LeaveonReadData.csv","csv","header");
 
@@ -17,7 +19,7 @@ function preload(){
 function setup(){
     var cnv = createCanvas(innerWidth,innerHeight);
     cnv.mouseClicked(switchConvo);
-    row=22;
+    row=3;
     column=0; 
     textSize(30);
     input = createInput();
@@ -48,7 +50,6 @@ function draw(){
             if(table.getString(row,column)== ""){ //check column=0 if the first one is empty;
                 if(i!=0){
                     if(table.getString(row,column+(i)).length>=50&&table.getString(row,column+(i)).length<90 ){
-                        // console.log(table.getString(row,column+(i-1)).length);
                         average=35*2;
                         line=yline[i-1]+average; 
                         yline[i]=line+space;
@@ -57,7 +58,7 @@ function draw(){
                         //                                                fill('yellow');
                         //                                                rect(left, yline[i-1]+space,windowWidth-200,35);
 
-                    }else  if(table.getString(row,column+(i)).length>=90 ){
+                    }else  if(table.getString(row,column+(i)).length>=90 && table.getString(row,column+(i)).length<140 ){
                         //console.log(table.getString(row,column+(i-1)).length);
                         average=35*3;
                         line=yline[i-1]+average; 
@@ -66,48 +67,62 @@ function draw(){
                         //                        fill('yellow');
                         //                        rect(left, yline[i-1]+space,windowWidth-200,35);
                         //                        ellipse(left, 410,40,40);
-                    }
-                    else{
+                    }else  if(table.getString(row,column+(i)).length>=140 ){
+                        //console.log(table.getString(row,column+(i-1)).length);
+                        average=35*4;
+                        line=yline[i-1]+average; 
+                        yline[i]=line+(space);
+                    }else{
                         line=yline[i-1];  
                         yline[i]=line+space;
                         //                        console.log(i+" "+yline[i]);
-//                        fill('yellow');
-//                        rect(left, yline[i-1]+space,windowWidth-200,35);
+//                                                                        fill('yellow');
+//                                                                        rect(left, yline[i-1]+space,windowWidth-200,35);
                     }
                 }else{
-                    line=0;
+                    line=firstTxt;
                     yline[i]=line;
                     //                    console.log(i+" "+yline[i]);
                 }
             }else{
                 if(i!=0){ //2,4
                     if(table.getString(row,column+1)== ""){ //has input 0 but no input 1
-
                         if(table.getString(row,3)== ""){
-                            line=firstTxt;  
-                            yline[i]=yline[i-1];
-                            //                                                console.log(i+" "+yline[i]);
-                            //                            fill("brown");
-                            //                            rect(left, yline[i-2]+space,windowWidth-200,35);
-
+                               if(table.getString(row,column+(i)).length>=56&&table.getString(row,column+(i)).length<85 ){
+                                average=35*2;
+                                line=yline[i-1];
+                                yline[i]=line;
+                                console.log(i+" "+table.getString(row,column+(i)).length);
+                                fill('yellow');
+                                rect(left, yline[4],windowWidth-200,35);
+                            }else  if(table.getString(row,column+(i)).length>=85 ){
+                                average=35*3;
+                                line=yline[i-1]; 
+                                yline[i]=line;
+                            }else{
+                                average=35;
+                                line=yline[i-1];  
+                                yline[i]=line;
+                                 console.log(i+" "+table.getString(row,column+(i)).length);
+                            }
                         }else{
                             if(table.getString(row,column+(i)).length>=50&&table.getString(row,column+(i)).length<90 ){
                                 average=35*2;
-                                line=yline[i-1]+average;
+                                line=yline[i-1]+space+average;
                                 yline[i]=line;
                                 //                            console.log(i+" "+yline[i]);
                                 //                            fill('orange');
                                 //                            rect(left, yline[i-1]+space,windowWidth-200,35);
                             }else  if(table.getString(row,column+(i)).length>=90 ){
                                 average=35*3;
-                                line=yline[i-1]+average; 
+                                line=yline[i-1]+space+average; 
                                 yline[i]=line;
                                 //                            console.log(i+" "+yline[i]);
                                 //                            fill('orange');
                                 //                            rect(left, yline[i-1]+space,windowWidth-200,35);
                             }else{
                                 average=35;
-                                line=yline[i-1]+average;  
+                                line=yline[i-1]+space+average;  
                                 yline[i]=line;
                                 //                                fill("brown");
                                 //                                rect(left, yline[0],windowWidth-200,35);
@@ -117,25 +132,39 @@ function draw(){
 
                     }else{ // has input 0 and input 1
                         if(table.getString(row,column+(i)).length>=50&&table.getString(row,column+(i)).length<90 ){
-                            average=35*2;
-                            line=firstTxt+average;
-                            yline[i]=line+(space*i);
-                            //                            console.log(i+" "+yline[i]);
-                            //                            fill('orange');
-                            //                            rect(left, yline[i-1]+space,windowWidth-200,35);
+                            if(i!=0){ 
+                                average=35*2
+                                line=yline[i-1]+space+average;
+                                yline[i]=line;
+
+                            }else{
+                                average=35*2
+                                line=firstTxt+average;  
+                                yline[i]=line;
+                            }
                         }else  if(table.getString(row,column+(i)).length>=90 ){
-                            average=35*3;
-                            line=firstTxt+average; 
-                            yline[i]=line+(space*i);
-                            //                            console.log(i+" "+yline[i]);
-                            //                            fill('orange');
-                            //                            rect(left, yline[i-1]+space,windowWidth-200,35);
+                             if(i!=0){ 
+                                average=35*3
+                                line=yline[i-1]+space+average;
+                                yline[i]=line;
+
+                            }else{
+                                average=35*3
+                                line=firstTxt+average;  
+                                yline[i]=line;
+                            }
                         }else{
-                            line=firstTxt+(space*i);  
-                            yline[i]=line;
-                            //                            console.log(i+" "+yline[i]);
-                            //                                                        fill('orange');
-                            //                                                        rect(left, yline[i-1]+space,windowWidth-200,35);
+                            if(i!=0){ 
+                                average=35
+                                line=yline[i-1]+space+average;
+                                yline[i]=line;
+
+                            }else{
+                                average=35
+                                line=firstTxt+average;  
+                                yline[i]=line;
+                                
+                            }
                         }
                     }
                 }else{ // i = 0;
@@ -155,28 +184,38 @@ function draw(){
                         //                        fill('red');
                         //                        rect(left, yline[i],windowWidth-200,35);
                     }else{
+                        average=35
                         line=firstTxt;  
-                        yline[i]=line+(space*i);
-                        //                        console.log(i+" "+yline[i]);
-                        //                        fill('red');
-                        //                        rect(left, yline[i],windowWidth-200,35);
+                        yline[i]=line;
+
                     }
 
                 }
             }
-            fill(0);
-            if(i!=0){
-                if((table.getString(row,column+1))== ""&&(table.getString(row,3))== ""){
-                    text(table.getString(row,column+i),left,yline[i-2]+space,windowWidth-100, windowHeight);
-                }else if ((table.getString(row,column+1))== ""&& (table.getString(row,3))!= ""){
-                    text(table.getString(row,2),left,yline[2-2]+space,windowWidth-100, windowHeight);
-                    text(table.getString(row,4),left,yline[4-1]+space,windowWidth-100, windowHeight);
+            if(table.getString(row,column+i)!= ""){
+                rectMode(CENTER);
+                fill(225);
+                char = str(table.getString(row,column+i));
+                txtWidth = textWidth(char);
+                rect(left+(txtWidth/2),yline[i]+20,txtWidth+35,average+25,30);
+                rectMode(CORNER);
+                fill(0);
+                if(i!=0){
+                    if((table.getString(row,column+1))== ""&&(table.getString(row,3))== ""){
+                        text(table.getString(row,column+i),left,yline[i],windowWidth-100, windowHeight);
+                    }else if ((table.getString(row,column+1))== ""&& (table.getString(row,3))!= ""){
+                        text(table.getString(row,2),left,yline[2-2]+space,windowWidth-100, windowHeight);
+                        text(table.getString(row,4),left,yline[4-1]+space,windowWidth-100, windowHeight);
+                    }else{
+                        text(table.getString(row,column+i),left,yline[i],windowWidth-100, windowHeight);
+                    }
                 }else{
-                    text(table.getString(row,column+i),left,yline[i-1]+space,windowWidth-100, windowHeight);
+                    text(table.getString(row,column+i),left,firstTxt,windowWidth-100, windowHeight);
                 }
-            }else{
-                text(table.getString(row,column+i),left,firstTxt,windowWidth-100, windowHeight);
             }
+
+
+
             ////////////------------------//////////////////
         } else {
             fill(0);
@@ -185,26 +224,26 @@ function draw(){
                 if(i!=1){ // 3, 5
                     if(table.getString(row,column+(i)).length>=50&&table.getString(row,column+(i)).length<90 ){
                         average=35*2;
-                        line= yline[i-1]+average;
-                        yline[i]=line+space;
+                        line= yline[i-1]+space+average;
+                        yline[i]=line;
                         //                        console.log(i+" "+yline[i]);
                         //                        fill('blue');
                         //                        rect(right,yline[i-1]+space,windowWidth-200,35);
 
                     }else if(table.getString(row,column+(i)).length>=90 ){
                         average=35*3;
-                        line=yline[i-1]+average; 
-                        yline[i]=line+space;
+                        line=yline[i-1]+space+average; 
+                        yline[i]=line;
                         //                        fill('blue');
                         //                        rect(right, yline[i-1]+space,windowWidth-200,35);
                         //                        console.log(i+" "+yline[i]);
                     }else{
                         average=35;
-                        line=yline[i-1]+average;
+                        line=yline[i-1]+space+average;
                         yline[i]=line;
-//                        fill('blue');
-//                        rect(right, yline[i-1]+space,windowWidth-200,35);
-                        //                        console.log(i+" "+yline[i]);
+//                        //                        fill('blue');
+//                                                rect(right, yline[i-1]+space,windowWidth-200,35);
+//                                                console.log(i+" "+yline[i]);
                     }
                 }else{ // 1
                     if(table.getString(row,column+(i)).length>=50&&table.getString(row,column+(i)).length<100 ){
@@ -228,8 +267,8 @@ function draw(){
                         line=(firstTxt+space*(i-1));
                         yline[i]=line;
                         //                        console.log(i+" "+yline[i]);
-                        //                        fill('lightblue');
-                        //                        rect(right, yline[i-1]+space,windowWidth-200,35);
+//                                                                        fill('lightblue');
+//                                                                        rect(right, yline[i-1]+space,windowWidth-200,35);
                     }
                 }
             }else{//has input 0
@@ -256,7 +295,7 @@ function draw(){
                 else if(table.getString(row,column+(i)).length>=140){
                     //                    console.log(table.getString(row,column+(i-1)).length);
                     average=35*3;
-                    line=firstTxt+(space*i)+average; 
+                    line=yline[i-1]+space+average;
                     yline[i]=line;
                     //                    console.log(i+" "+yline[i]);
                     //                    fill('green');
@@ -264,20 +303,25 @@ function draw(){
                 }
                 else{
                     average=35;
-                    line=yline[i-1]+average;
-                    yline[i]=line+(space);
-                    //   console.log(i+" "+yline[i]);
-                    //                                        fill('green');
-                    //                                        rect(right,yline[i-1]+space,windowWidth-200,35);
+                    line=yline[i-1]+space+average;
+                    yline[i]=line;
 
                 } 
             }
-
-            fill(0)
-            text(table.getString(row,column+i),right,yline[i-1]+space,windowWidth-200,windowHeight);
+            if(table.getString(row,column+i)!=""){
+                rectMode(CENTER);
+                fill(225);
+                char = str(table.getString(row,column+i));
+                txtWidth = textWidth(char);
+                rect((windowWidth-(txtWidth/2)),yline[i]+20,txtWidth+35,average+25,30);
+                rectMode(CORNER);
+                fill(0)
+                text(table.getString(row,column+i),right,yline[i],windowWidth-200,windowHeight);
+            }
         }
     }
     if(showResp){
+        rectMode(CORNER);
         var i=5;
         if(table.getString(row,4)!=""){
             afterLine=yline[i-1]+space;
