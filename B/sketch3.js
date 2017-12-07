@@ -19,7 +19,7 @@ function preload(){
 function setup(){
     var cnv = createCanvas(innerWidth,innerHeight);
     cnv.mouseClicked(switchConvo);
-    row=3;
+    row=0;
     column=0; 
     textSize(30);
     input = createInput();
