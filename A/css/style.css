@@ -271,32 +271,3 @@ form.chat input[type='submit']{
     width: 100%;
   }
 }
-
-/* DEMO */
-/*
-.iphone{
-  width:300px;
-  height:609px;
-  background-image:url('http://www.adobewordpress.com/tasarim/images/iphone6.png');
-  background-size:100% 100%;
-  margin:0 auto;
-  position:relative;
-}
-
-.border{
-	position:absolute;
-	top:12.3%;right:7%;left:7%;bottom:12%;
-	overflow:hidden;
-}
-
-a.article{
-  position:fixed;
-  bottom:15px;left:15px;
-  display:table;
-  text-decoration:none;
-  color:white;
-  background-color:#00e34d;
-  padding: 10px 20px;
-  border-radius: 25px;
-  font: 400 15px 'Open Sans', sans-serif;
-}*/

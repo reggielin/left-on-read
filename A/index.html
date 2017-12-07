@@ -6,54 +6,67 @@
   <title>Left On Read</title>
   
 	<link rel="stylesheet" href="css/style.css">
+	
 </head>
 
 <body>
-  <div class="iphone">
-  <div class="border">
-    <form class="chat">
-      <span></span>
-      <div class="messages" id="first">
-        <div class="message">
-          <div class="fromThem">
-            <p id= "You1">Is that food you made?</p>
-          </div>
-        </div>
-				
-        <div class="message">
-          <div class="myMessage">
-            <p id= "Me1">Yes, I did.</p>
-          </div>
-        </div>
-				
-        <div class="message">
-          <div class="fromThem">
-            <p id="You2">And, you did not invite me?</p>
-          </div>
-        </div>
-				
-        <div class="message">
-          <div class="myMessage">
-            <p id="Me3"> .</p>
-          </div>
-        </div>
-				
-        <div class="message">
-          <div class="fromThem">
-            <p id="You3"> .</p>
-          </div>
-        </div>
-				
-      </div>
-      <input type="text" placeholder="Your message">
-      <input type="submit" value="Send">
-    </form>
-  </div>
-</div>
+	<form class="chat">
+		<span></span>
+		<div class="messages" id="first" sheetsu="https://sheetsu.com/apis/v1.0su/2e93602a2b09" sheetsu-search='{"id": "3"}'>
+			
+			<div class="message" id= "You1">
+				<div class="fromThem">
+					<p id="Y1">{{You1}}</p>
+				</div>
+			</div>
+
+			<div class="message">
+				<div class="myMessage" id= "Me1">
+					<p id="M1">{{Me1}}</p>
+				</div>
+			</div>
+
+			<div class="message">
+				<div class="fromThem" id="You2">
+					<p id="Y2">{{You2}}</p>
+				</div>
+			</div>
+
+			<div class="message">
+				<div class="myMessage" id="Me2">
+					<p id="M2">{{Me2}}</p>
+				</div>
+			</div>
+
+			<div class="message">
+				<div class="fromThem" id="You3">
+					<p id="Y3">{{You3}}</p>
+				</div>
+			</div>
+
+		</div>
+		<input type="text" placeholder="Your message">
+		<input type="submit" value="Send">
+  </form>
 
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
-    <script  src="js/index.js"></script>
-
+ 	<script  src="js/index.js"></script>
+	<script src="//load.sheetsu.com"></script>
+	
 </body>
+	 	<script src="js/script.js"></script>
+	
+<!--
+	<script>
+window.delayedMessage = function() {
+	setTimeout(function(){
+		if (document.getElementById('Y1').innerHTML.length == 0){
+			document.getElementById('You1').style.visibility = "hidden";
+			}else {document.getElementById('You1').style.visibility = "visible";
+			}
+	}, 50);
+};
+	</script>
+-->
 </html>
+
