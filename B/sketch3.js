@@ -294,7 +294,7 @@ function draw(){
                 text(table.getString(row,column+i),left,afterLine+35,windowWidth-200, windowHeight);
             }else{
                 if (table.getString(row,2)!=""){
-                    afterLine=yline[2]+space+35;
+                    afterLine=yline[2]+space+50;
                     fill(150);
                     textAlign(LEFT);
                     text("READ X:XX XM",left,afterLine,windowWidth-200, windowHeight);
