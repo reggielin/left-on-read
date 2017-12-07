@@ -93,8 +93,8 @@ function draw(){
                                 line=yline[i-1];
                                 yline[i]=line;
                                 console.log(i+" "+table.getString(row,column+(i)).length);
-                                fill('yellow');
-                                rect(left, yline[4],windowWidth-200,35);
+//                                fill('yellow');
+//                                rect(left, yline[4],windowWidth-200,35);
                             }else  if(table.getString(row,column+(i)).length>=85 ){
                                 average=35*3;
                                 line=yline[i-1]; 
