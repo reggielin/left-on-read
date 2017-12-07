@@ -20,12 +20,12 @@ function setup() {
 //	var leave = rect(0, ((729/2208)*canvasHeight), innerWidth, ((960/2208)*canvasHeight));
 //	var left = rect(0, ((1188/2208)*canvasHeight), innerWidth, ((1421/2208)*canvasHeight));
 //	
-//	leaveLink = createA('http://i.imgur.com/WXaUlrK.gif', '');
-//	leftLink = createA('http://i.imgur.com/WXaUlrK.gif', '');
+//	leaveLink = createA('link', '');
+//	leftLink = createA('link'', '');
 	
 }
 
-function mouseClicked(){
+function mousePressed(){
   if ( (mouseX > 0) && (mouseX < innerWidth) && (mouseY > ((729/2208)*canvasHeight)) && (mouseY < ((960/2208)*canvasHeight)) ) {
 		document.getElementById('leaveLink').click();
   } 
