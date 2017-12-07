@@ -1,3 +1,5 @@
+$(function(){
+	
 window.delayedMessage = function() {
 	setTimeout(function(){
 	
@@ -41,3 +43,5 @@ window.delayedMessage = function() {
 
 	}, 500);
 };
+	
+	});

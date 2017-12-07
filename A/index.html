@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=0">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <title>Left On Read</title>
   
 	<link rel="stylesheet" href="css/style.css">
@@ -12,7 +12,7 @@
 <body>
 	<form class="chat">
 		<span></span>
-		<div class="messages" id="first" sheetsu="https://sheetsu.com/apis/v1.0su/2e93602a2b09" sheetsu-search='{"id": "3"}'>
+		<div class="messages" id="first" sheetsu="https://sheetsu.com/apis/v1.0su/2e93602a2b09" sheetsu-search='{"id": "1"}'>
 			
 			<div class="message" id= "You1">
 				<div class="fromThem">
@@ -44,6 +44,12 @@
 				</div>
 			</div>
 
+			<div class="message">
+				<div class="iRead" id="iRead">
+					<p id="iR">Read XX:XX <br>{{iRead}}</p>
+				</div>
+			</div>
+			
 		</div>
 		<input type="text" placeholder="Your message">
 		<input type="submit" value="Send">
@@ -60,7 +66,7 @@
 	<script>
 window.delayedMessage = function() {
 	setTimeout(function(){
-		if (document.getElementById('Y1').innerHTML.length == 0){
+		if (document.getElementById('Y1').innerHTML.length === 0){
 			document.getElementById('You1').style.visibility = "hidden";
 			}else {document.getElementById('You1').style.visibility = "visible";
 			}

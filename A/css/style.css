@@ -63,7 +63,7 @@ form.chat .message p{
 }
 
 form.chat .myMessage,
-form.chat .fromThem {
+form.chat .fromThem, form.chat .iRead {
   max-width: 50%;
   word-wrap: break-word;
   margin-bottom: 20px;
@@ -86,6 +86,15 @@ form.chat .message:hover date {
 */
 
 form.chat .myMessage,.fromThem{
+  position: relative;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 20px;
+  clear: both;
+  font: 400 15px 'Open Sans', sans-serif;
+}
+
+form.chat .iRead{
   position: relative;
   padding: 10px 20px;
   color: white;
@@ -167,6 +176,37 @@ form.chat .fromThem:after {
   transform: translate(-30px, -2px);
 }
 
+form.chat .iRead {
+  background: #FFFFFF;
+  color: grey;
+  float: left;
+  clear:both;
+}
+form.chat .iRead:before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  bottom: -2px;
+  left: -7px;
+  height: 19px;
+  -webkit-transform: translate(0, -2px);
+  transform: translate(0, -2px);
+  transform: translate(-1px, -2px)\9;
+}
+
+form.chat .iRead:after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  bottom: -2px;
+  left: 4px;
+  width: 26px;
+  height: 20px;
+  background: white;
+  -webkit-transform: translate(-30px, -2px);
+  transform: translate(-30px, -2px);
+}
+
 form.chat date {
   position:absolute;
   top: 10px;
@@ -211,6 +251,10 @@ form.chat input[type='submit']{
   form.chat .myMessage,form.chat .fromThem{
     font-size:12px;
   }
+
+ form.chat .iRead{
+    font-size:11px;
+  }
   
 /*
   form.chat .message:hover .myMessage{
@@ -232,7 +276,8 @@ form.chat input[type='submit']{
   }
   
   form.chat .myMessage,
-  form.chat .fromThem {
+  form.chat .fromThem,
+	form.chat .iRead{
     max-width: 90%;
   }
   

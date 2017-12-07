@@ -38,9 +38,7 @@ $('form.chat input[type="submit"]').click(function(event) {
 //      (('' + day).length < 2 ? '0' : '') + day + '.' +
 //      (('' + month).length < 2 ? '0' : '') + month + '.' +
 //      d.getFullYear() + '&nbsp;&nbsp;' + clock;
-    $('form.chat div.messages').append('<div class="message"><div class="myMessage"><p>' + message
-//																			 + '</p><date>' + currentDate + '</date></div></div>'
-																			);
+    $('form.chat div.messages').append('<div class="message"><div class="myMessage"><p>' + message + '</p></div></div>');
     setTimeout(function() {
       $('form.chat > span').addClass('spinner');
     }, 100);
