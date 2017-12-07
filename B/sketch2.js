@@ -1,5 +1,6 @@
 var table;
-var space=200;
+var space=120;
+var average=1;
 var firstTxt =100;
 var left =30;
 var right=200;
@@ -8,6 +9,7 @@ var missingTxt=0;
 var input,showResp;
 var afterLine;
 var line;
+var yline =[];
 function preload(){
     table = loadTable("data/LeaveonReadData.csv","csv","header");
 
@@ -15,11 +17,11 @@ function preload(){
 function setup(){
     var cnv = createCanvas(innerWidth,innerHeight);
     cnv.mouseClicked(switchConvo);
-    row=5;
+    row=2;
     column=0; 
     textSize(30);
     input = createInput();
-    input.style('z-index', '3')
+    //    input.style('z-index', '3')
     input.position(left,1400);
     input.size(windowWidth-200,55);
     button = createButton("send");
@@ -29,58 +31,126 @@ function setup(){
     button.style("background-color", "BLUE");
     showResp=false;
     noStroke();
-    print(round(table.getColumnCount()/2)-1);
-    
+    for (var i=0; i<=round((table.getColumnCount()/2)-1); i++){
+//        print(round(table.getColumnCount()/2)-1);
+        yline[i] = firstTxt+(space*(i));
+        console.log( yline[i]);
+    }
 }
 
 function draw(){
     background(250);
-    //    noFill();
-    //    strokeWeight(15);
-    //    stroke("BLUE");
-    //    rect(0,0,innerWidth,innerHeight);
     for (var i=0; i<=(round(table.getColumnCount()/2)-2); i++ ) {
-        if (i%2 == 0) {
-            console.log(i+" "+table.getString(row,column+i));
+        if (i%2 == 0) { //0,2,4
+            //console.log(i+" "+table.getString(row,column+i));
             fill(0);
             textAlign(LEFT);
             if(table.getString(row,column)== ""){ //check column=0 if the first one is empty;
-                console.log(i+ " this row has no 0");
-                if(table.getString(row,column+i).length>=50 ){
-                    console.log(i+ " long txt");
-                    line=firstTxt+(space*i)/2;  
+                if(i!=0){
+                    if(table.getString(row,column+(i-1)).length>=50&&table.getString(row,column+(i-1)).length<100 ){
+                        // console.log(table.getString(row,column+(i-1)).length);
+                        average=35*2;
+                        line=firstTxt+(space*(i-1))+average;
+                        //                         line=firstTxt+(space*i)-firstTxt;
+                        fill('gray');
+                        rect(left,line,windowWidth-200,35);
+
+                    }else  if(table.getString(row,column+(i-1)).length>=100 ){
+                        //console.log(table.getString(row,column+(i-1)).length);
+                        average=35*3;
+                        line=firstTxt+(space*i); 
+                        fill('red');
+                        rect(left,line,windowWidth-200,35);
+                    }
+                    else{
+                        line=firstTxt+(space*(i-1));  
+                        fill('yellow');
+                        rect(left,line,windowWidth-200,35);
+                    }
                 }else{
-                    console.log(i+" short txt");
-                    line=firstTxt+(space*i)/2;  
-                    //                    console.log(i+" "+table.getString(row,column+i)+" "+line);
+                    line=firstTxt+(space*(i-1));
                 }
             }else{
-                if(table.getString(row,column+i).length>=50 ){
-                    console.log(i+ " long txt");
-                    line=firstTxt+(space*i)/2;  
+                if(i!=0){
+                    if(table.getString(row,column+1)== ""){
+                        line=firstTxt+(space*(i)/1.5);  
+                        // line=firstTxt+(space*(i));  
+//                        fill('pink');
+//                        rect(left,line,windowWidth-200,35);
+                    }else{
+                        if(table.getString(row,column+(i-1)).length>=50&&table.getString(row,column+(i-1)).length<90 ){
+                            average=35*2;
+                            line=firstTxt+(space*i)+average;
+                            fill('lightblue');
+                            rect(left,line,windowWidth-200,35);
+
+                        }else  if(table.getString(row,column+(i-1)).length>=90 ){
+                            average=35*4;
+                            line=firstTxt+(space*i)+average; 
+                            fill('lightgreen');
+                            rect(left,line,windowWidth-200,35);
+                        }else{
+                            line=firstTxt+(space*i);  
+                            fill('brown');
+                            rect(left,line,windowWidth-200,35);
+                        }
+                    }
                 }else{
-                    console.log(i+" short txt");
-                    line=firstTxt+(space*i)/2;  
-                    //                    console.log(i+" "+table.getString(row,column+i)+" "+line);
+                    line=firstTxt+(space*i);  
                 }
             }
+            fill(0);
             text(table.getString(row,column+i),left,line,windowWidth-100, windowHeight);
         } else {
             fill(0);
             textAlign(RIGHT);
             if(table.getString(row,column)== ""){
-                // if(table.getString(row,column+i).length>=30 ){
-                if(i==1){  
-                    line=(firstTxt+space*(i-1));
+                if(i!=1){
+                    if(table.getString(row,column+(i-1)).length>=50&&table.getString(row,column+(i-1)).length<100 ){
+
+                        average=(table.getString(row,column+(i-1)).length)/50;
+                        line=firstTxt+(space*i);
+                        fill('blue');
+                        rect(right,line,windowWidth-200,35);
+
+                    }else  if(table.getString(row,column+(i-1)).length>=100 ){
+                        average=(table.getString(row,column+(i-1)).length)/115;
+                        line=firstTxt+(space*i); 
+                        fill('orange');
+                        rect(right,line,windowWidth-200,35);
+                    }else{
+                        line=(firstTxt+space*(i-1));
+                    }
                 }else{
-                     line=(firstTxt+space*(i-1))-firstTxt;
+                    line=(firstTxt+space*(i-1));
+
                 }
             }else{
-                line=firstTxt+(space*i)/2;
-                //                console.log(i+" "+table.getString(row,column+i)+" "+line);
+                ///
+                if(table.getString(row,column+(i-1)).length>=50&&table.getString(row,column+(i-1)).length<90 ){
+                    // console.log(table.getString(row,column+(i-1)).length);
+                    average=35*2;
+                    line=firstTxt+(space*(i-1))+average;
+                    //                         line=firstTxt+(space*i)-firstTxt;
+                    fill('green');
+                    rect(left,line,windowWidth-200,35);
+
+                }else if(table.getString(row,column+(i-1)).length>=90 ){
+                    //console.log(table.getString(row,column+(i-1)).length);
+                    average=35*i;
+                    line=firstTxt+(space*i)+average; 
+                    yline[i]=line;
+                    fill('purple');
+                    rect(right,line,windowWidth-200,35);
+                }
+                else{
+                    line=firstTxt+(space*(i));   
+                    fill('violet');
+                    rect(right,line,windowWidth-200,35);
+                }
+                ///
             }
-//            fill('red');
-//            rect(windowWidth/2-200,line,windowWidth-100,windowHeight);
+
             fill(0)
             text(table.getString(row,column+i),right,line,windowWidth-200,windowHeight);
         }
@@ -90,7 +160,7 @@ function draw(){
         afterLine=firstTxt+space*i/2;
         fill(150);
         textAlign(RIGHT);
-        text(table.getString(row,column+i),right,afterLine,windowWidth/2, windowHeight);
+        text(table.getString(row,column+i),right,afterLine,windowWidth-200, windowHeight);
         //        console.log("here");
         console.log(table.getString(row,column+i).length);
     }

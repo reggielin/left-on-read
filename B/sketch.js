@@ -107,3 +107,14 @@ function switchConvo(){
 //    text(table.getString(row,column+3),right,firstTxt +space*3,windowWidth,windowHeight);
 //    //respond
 //    text(table.getString(row,column+5),right,firstTxt +space*5,windowWidth,windowHeight);
+
+
+
+for (var i=0; i<tableRow.getColumnNumber; i++ ) {
+    
+    if (i%2 == 0) {
+        // draw on left
+    } else {
+        // draw on rigth
+    }
+}
