@@ -76,8 +76,8 @@ function draw(){
                         line=yline[i-1];  
                         yline[i]=line+space;
                         //                        console.log(i+" "+yline[i]);
-//                                                                        fill('yellow');
-//                                                                        rect(left, yline[i-1]+space,windowWidth-200,35);
+                        //                                                                        fill('yellow');
+                        //                                                                        rect(left, yline[i-1]+space,windowWidth-200,35);
                     }
                 }else{
                     line=firstTxt;
@@ -88,13 +88,13 @@ function draw(){
                 if(i!=0){ //2,4
                     if(table.getString(row,column+1)== ""){ //has input 0 but no input 1
                         if(table.getString(row,3)== ""){
-                               if(table.getString(row,column+(i)).length>=56&&table.getString(row,column+(i)).length<85 ){
+                            if(table.getString(row,column+(i)).length>=56&&table.getString(row,column+(i)).length<85 ){
                                 average=35*2;
                                 line=yline[i-1];
                                 yline[i]=line;
                                 console.log(i+" "+table.getString(row,column+(i)).length);
-//                                fill('yellow');
-//                                rect(left, yline[4],windowWidth-200,35);
+                                //                                fill('yellow');
+                                //                                rect(left, yline[4],windowWidth-200,35);
                             }else  if(table.getString(row,column+(i)).length>=85 ){
                                 average=35*3;
                                 line=yline[i-1]; 
@@ -103,7 +103,7 @@ function draw(){
                                 average=35;
                                 line=yline[i-1];  
                                 yline[i]=line;
-                                 console.log(i+" "+table.getString(row,column+(i)).length);
+                                console.log(i+" "+table.getString(row,column+(i)).length);
                             }
                         }else{
                             if(table.getString(row,column+(i)).length>=50&&table.getString(row,column+(i)).length<90 ){
@@ -143,7 +143,7 @@ function draw(){
                                 yline[i]=line;
                             }
                         }else  if(table.getString(row,column+(i)).length>=90 ){
-                             if(i!=0){ 
+                            if(i!=0){ 
                                 average=35*3
                                 line=yline[i-1]+space+average;
                                 yline[i]=line;
@@ -163,7 +163,7 @@ function draw(){
                                 average=35
                                 line=firstTxt+average;  
                                 yline[i]=line;
-                                
+
                             }
                         }
                     }
@@ -241,9 +241,9 @@ function draw(){
                         average=35;
                         line=yline[i-1]+space+average;
                         yline[i]=line;
-//                        //                        fill('blue');
-//                                                rect(right, yline[i-1]+space,windowWidth-200,35);
-//                                                console.log(i+" "+yline[i]);
+                        //                        //                        fill('blue');
+                        //                                                rect(right, yline[i-1]+space,windowWidth-200,35);
+                        //                                                console.log(i+" "+yline[i]);
                     }
                 }else{ // 1
                     if(table.getString(row,column+(i)).length>=50&&table.getString(row,column+(i)).length<100 ){
@@ -267,8 +267,8 @@ function draw(){
                         line=(firstTxt+space*(i-1));
                         yline[i]=line;
                         //                        console.log(i+" "+yline[i]);
-//                                                                        fill('lightblue');
-//                                                                        rect(right, yline[i-1]+space,windowWidth-200,35);
+                        //                                                                        fill('lightblue');
+                        //                                                                        rect(right, yline[i-1]+space,windowWidth-200,35);
                     }
                 }
             }else{//has input 0
